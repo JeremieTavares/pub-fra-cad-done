@@ -1,0 +1,387 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(254, 254, 254);
+}
+
+.sessionSuccess {
+    text-align: center;
+    font-size: 25px;
+    color: green;
+    padding: 5px;
+    margin-bottom: 50px;
+    border: 2px solid rgb(10, 146, 10);
+}
+
+.divReservation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@font-face {
+    font-family: 'loved_by_the_kingregular';
+    src: url('lovedbytheking-webfont.woff2') format('woff2'),
+        url('lovedbytheking-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* -------------HEADER -------------- */
+header {
+    text-align: start;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'h1 nav';
+}
+
+.h1Accueil {
+    margin: 0;
+    margin-left: 50px;
+    padding-top: 15px;
+    color: white;
+    grid-area: h1;
+}
+
+.h1Menu {
+    text-align: center;
+    margin: 60px 0px;
+    font-size: 60px;
+}
+
+.h3-accueil {
+    font-size: 30px;
+    text-align: center;
+}
+
+.p-accueil {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+
+.h1ReservationPanelAdmin {
+    margin-top: 100px;
+}
+
+.imgBanner h2 {
+    margin: 0 0 30px 0;
+    padding-top: 150px;
+    font-size: 45px;
+    font-weight: 400;
+}
+
+.imgBanner {
+    text-align: center;
+}
+
+.imgBanner a {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px 40px;
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ---------------------------------- */
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 60%;
+}
+
+.wrapper-accueil-biere {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 100%;
+}
+
+.wrapper-main {
+    margin: auto;
+    width: 60%;
+}
+
+/* pour les forms des tables */
+.d-flex-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 40rem;
+}
+
+.d-flex-commentaire {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.d-flex-commentaire input[type='submit'] {
+    padding: 20px 0;
+    background-color: rgb(73, 157, 97);
+    width: 300px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.d-flex-commentaire textarea {
+    border-radius: 10px;
+}
+
+
+.d-flex-col input,
+.d-flex-commentaire input {
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.444);
+    margin: 10px 0px;
+}
+
+.d-flex-col label {
+    font-size: 20px;
+    margin: 10px 0px;
+    font-weight: 600;
+}
+
+.d-flex-col input[type='submit'] {
+    padding: 20px 0;
+    background-color: rgb(73, 157, 97);
+    border: 1px solid #ccc;
+    margin-top: 40px;
+    font-weight: bolder;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.d-flex-col select {
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 10px 0px;
+}
+
+.formReservationPublic {
+    border-radius: 15px;
+    margin: auto;
+}
+
+.textCenter {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 60px;
+}
+
+.imgAccueil {
+    height: auto;
+    width: 100%;
+}
+
+.imgPays {
+    height: 25px;
+    width: 40px;
+}
+
+.imgCanada {
+    width: 50px;
+    height: auto;
+}
+
+.homeLink {
+    text-decoration: none;
+    color: white;
+    font-family: 'loved_by_the_kingregular';
+}
+
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+/* -------------FOOTER -------------- */
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: white;
+    margin-top: 50px;
+}
+
+/* Affiche le copyright et le liens vers facebbook */
+footer>span:first-of-type {
+    margin-bottom: 20px;
+}
+
+footer>span:nth-of-type(2) {
+    margin-bottom: 20px;
+}
+
+footer>span:nth-of-type(2)>a {
+    color: white;
+}
+
+.footerGrid {
+    display: flex;
+    align-items: flex-end;
+}
+
+.footerGrid h3{
+    margin: 0 30px;
+}
+
+/* ---------------------------------- */
+
+
+
+/* ----------------NAVBAR------------- */
+
+#navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-menu-1-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#primary-menu {
+    display: flex;
+    padding: 0;
+}
+
+#primary-menu>li {
+    list-style: none;
+    /* background-color: #FEFAEF; */
+    width: 25%;
+    padding: 18px 20px;
+}
+
+#primary-menu>li:first-of-type {
+    border-radius: 20px 0px 0px 20px;
+}
+
+#primary-menu>li:last-of-type {
+    border-radius: 0px 20px 20px 0px;
+}
+
+
+#primary-menu>li>a {
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+.logoFacebook {
+    width: 25px;
+    height: 25px;
+}
+
+.div_menu {
+    width: 48%;
+    padding: 20px;
+    background-color: rgba(231, 231, 231, 0.211);
+    border-radius: 20px;
+    text-align: center;
+    margin: 5px;
+}
+
+.div-promotion {
+    margin: 60px 0;
+    text-align: center;
+    border-top: 5px dashed blue;
+    border-left: 5px dashed red;
+    border-bottom: 5px dashed red;
+    border-right: 5px dashed blue;
+    background: rgb(9, 9, 121);
+    background: linear-gradient(53deg, rgba(9, 9, 121, 0.25253851540616246) 41%, rgba(255, 0, 26, 0.24413515406162467) 100%);
+}
+
+.div-promotion h2 {
+    font-size: 40px;
+}
+
+.div-promotion p {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.div_table {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+}
+
+
+.formEvents,
+.formEventsTd {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.formEvents th {
+    background-color: #ccc;
+}
+
+.formEventsTd {
+    padding: 10px;
+    text-align: center;
+}
+
+.formEvents {
+    width: 70%;
+    color: black;
+}
+
+.xDelete {
+    color: red;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.xDeleteAll {
+    border: 1px solid red;
+    background-color: rgb(248, 63, 63);
+    border-radius: 15px;
+    padding: 15px;
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.formDeleteAll {
+    margin-top: 40px;
+}
+
+.aDelete {
+    text-decoration: none;
+}
+
+
+.btnDelete {
+    border: none;
+    cursor: pointer;
+}

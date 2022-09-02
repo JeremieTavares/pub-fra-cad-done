@@ -1,0 +1,155 @@
+dans extension-reservaation, cree un cpt avec acf pour register manuellement des gens, cependant si on delete ca ne keep pas le track dans lacf
+alors jai fait delete et add manuellement dans reservation qui est un admin_menu hook a la place dun cpt avec acf
+
+
+
+// ====================================================================================================================
+function registerCPTevenementReservation()
+{
+    $labels = array(
+        'name' => 'Gestion reservation',
+        'all_items' => 'Toutes les reservations',
+        'singular_name' => 'reservation',
+        'add_new_item' => 'Ajouter une reservation',
+        'edit_item' => 'Modifier une reservation',
+        'menu_name' => 'Gestion reservation'
+    );
+
+    $args = array(                               // Les auguments/specifications pour notre CPT
+
+        'labels' => $labels,                          // Voir tableau ci-dessus
+        'public' => true,                             // Permet l’affichage de ce type de contenu (pas juste backend)
+        'show_in_rest' => true,                       // Ajoute le CPT à l’API et permet l’utilisation de Gutengerg
+        'has_archive' => true,                          // true = type article
+        'publicly_queryable' => true,
+        'supports' => array('title'),                // Ce que le CPT inclus
+        'menu_position' => 997,                                    // Emplacement dans le menu WP
+        'menu_icon' => 'dashicons-clipboard'
+    );
+
+    register_post_type('reservation', $args); // Ceci enregistre le nouveau CPT
+
+    flush_rewrite_rules(); // Ceci est pour vider la cache et afficher le nouveau CPT dans le side menu
+}
+add_action('init', 'registerCPTevenementReservation');
+// ====================================================================================================================
+
+
+
+
+add_action('acf/save_post', 'my_acf_save_post', 5);
+function my_acf_save_post($post_id)
+{
+
+
+
+    // Get submitted values.
+
+
+
+    if (isset($_POST['acf']['field_6309a6f004fab'])) {
+        $table_number = 1;
+        $nom = ($_POST['acf']['field_6309a6f004fab']['field_630a8749e3dc9']);
+        $prenom = ($_POST['acf']['field_6309a6f004fab']['field_630a8ebc62488']);
+        $nb_pers = ($_POST['acf']['field_6309a6f004fab']['field_630a8764e3dca']);
+        $telephone = ($_POST['acf']['field_6309a6f004fab']['field_630a8da668cbd']);
+
+        global $wpdb;
+
+        $wpdb->query($wpdb->prepare("INSERT INTO wp_table_reservation
+                                    (prenom, nom, table_number, nb_pers, telephone) 
+                                    VALUES (%s, %s, %d, %d, %s)",
+                                           $prenom,
+                                           $nom,
+                                           $table_number,
+                                           $nb_pers,
+                                           $telephone));
+    
+    }
+}
+
+
+
+
+
+<!-- Dans archive-reservation / template, va avec ce qui a en haut -->
+
+
+<?php get_header(); ?>
+<h1 class="h1Menu">Nos tables de disponible</h1>
+<div class="wrapper">
+
+
+    <?php
+    $args = array(
+        'post_type' => 'reservation', // Quel type de post on veut afficher
+    );
+
+
+    query_posts($args);
+    if (have_posts()) {
+        while (have_posts()) {
+            the_post();
+
+    ?>
+
+            <div class="div_table">
+            <h2>Table 1: <?php the_field('table_1_place') ?>/4</h2>
+            <h2>Table 2: <?php the_field('table_2_place') ?>/4</h2>
+            <h2>Table 3: <?php the_field('table_3_place') ?>/4</h2>
+            <h2>Table 4: <?php the_field('table_4_place') ?>/4</h2>
+            <h2>Table 5: <?php the_field('table_5_place') ?>/4</h2>
+            <h2>Table 6: <?php the_field('table_6_place') ?>/4</h2>
+            <h2>Table 7: <?php the_field('table_7_place') ?>/4</h2>
+            <h2>Table 8: <?php the_field('table_8_place') ?>/4</h2>
+            </div>
+    <?php
+        }
+    } else {
+        echo "Pas d'article :'(";
+    } ?>
+</div>
+
+<div>
+        <h2>Reserver une table</h2>
+        <?php
+            $reservation = returnTableReservation();
+
+        ?>
+            <form action="<?= plugin_dir_path('reservation-insert.php') ?>" method="POST">
+                <div class="formEventRegister">
+                    <label for="prenom">Prenom:</label>
+                    <input type="text" name="prenom" id="prenom" required>
+
+                    <label for="nom">Nom:</label>
+                    <input type="text" name="nom" id="nom" required>
+
+                    <label for="table_num">Numero de table:</label>
+                    <select name="table_num" id="table_num">
+                        <?php foreach ($reservation as $value) {
+                            echo $value;
+                        } ?>
+                    </select>
+
+
+                    <label for="nb_pers">Nombre de personne:</label>
+                    <select name="nb_pers" id="nb_pers">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+
+
+                    <label for="tel">Telephone:</label>
+                    <input type="tel" name="tel" id="tel" required>
+
+                    <input type="submit" value="Confirmer" name="submit" id="submit">
+                </div>
+            </form>
+        <?php
+        
+        ?>
+    </div>
+
+<?php get_footer(); ?>
